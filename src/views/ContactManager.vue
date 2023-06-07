@@ -25,25 +25,49 @@
       </div>
     </div>
   </div>
+
+  <!-- Spinner -->
+  <div v-if="loading">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <SpinnerLoading/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div v-if="!loading && errorMessage">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <p class="h4 text-danger fw-bold">{{errorMessage}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container mt-3" v-if="contacts.length > 0">
     <div class="row">
-      <div class="col-md-6">
-        <div class="card my-2 list-group-item list-group-item-secondary shadow-lg" v-for="contact of contacts" :key="contact">
+      <div class="col-md-6" v-for="contact of contacts" :key="contact">
+        <div class="card my-2 list-group-item list-group-item-secondary shadow-lg">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col-sm-4">
-                <img src="https://cdn-icons-png.flaticon.com/512/219/219986.png" alt="" class="contact-img">
+                <img :src="contact.photo" alt="" class="contact-img">
               </div>
               <div class="col-sm-7">
                 <ul class="list-group">
                   <li class="list-group-item">
-                    Name : <span class="fw-bold">Name</span>
+                    Name : <span class="fw-bold">{{contact.name}}</span>
                   </li>
                   <li class="list-group-item">
-                    Email : <span class="fw-bold">Email</span>
+                    Email : <span class="fw-bold">{{contact.email}}</span>
                   </li>
                   <li class="list-group-item">
-                    Mobile : <span class="fw-bold">Mobile</span>
+                    Mobile : <span class="fw-bold">{{contact.mobile}}</span>
                   </li>
                 </ul>
               </div>
@@ -68,8 +92,10 @@
 
 <script>
 import { ContactService } from '@/services/ContactService';
+import SpinnerLoading from '@/components/SpinnerLoading';
 export default {
     name: "ContactManager",
+    components: {SpinnerLoading},
     data: function () {
       return {
         loading: false,

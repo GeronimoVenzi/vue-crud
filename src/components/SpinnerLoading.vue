@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    name: "SpinnerLoad",
+    name: "SpinnerLoading",
 }
 </script>
 
