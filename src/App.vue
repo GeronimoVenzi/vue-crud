@@ -1,12 +1,13 @@
 <template>
-  <h2>App Component</h2>
-  <button class="btn btn-success">hello</button>
-  <i class="fa fa-home fa-4x text-danger"></i>
+  <NavBar/>
+  <router-view/>
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
   export default {
     name: 'App',
+    components: {NavBar}
   }
 </script>
 
