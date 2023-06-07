@@ -1,5 +1,7 @@
 <template>
-  <h2>CRUD</h2>
+  <h2>App Component</h2>
+  <button class="btn btn-success">hello</button>
+  <i class="fa fa-home fa-4x text-danger"></i>
 </template>
 
 <script>
