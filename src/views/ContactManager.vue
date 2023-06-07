@@ -25,10 +25,10 @@
       </div>
     </div>
   </div>
-  <div class="container mt-3">
+  <div class="container mt-3" v-if="contacts.length > 0">
     <div class="row">
       <div class="col-md-6">
-        <div class="card my-2 list-group-item list-group-item-secondary shadow-lg">
+        <div class="card my-2 list-group-item list-group-item-secondary shadow-lg" v-for="contact of contacts" :key="contact">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col-sm-4">
@@ -67,8 +67,30 @@
 </template>
 
 <script>
+import { ContactService } from '@/services/ContactService';
 export default {
     name: "ContactManager",
+    data: function () {
+      return {
+        loading: false,
+        contacts: [],
+        errorMessage: null
+      }
+    },
+    created : async function () {
+      try {
+        this.loading = true;
+        let response = await ContactService.getAllContacts();
+        this.contacts = response.data;
+        this.loading = false;
+      } catch (error) {
+        this.errorMessage = error;
+        this.loading = false;
+      }
+    },
+    methods : {
+     
+    }
 }
 </script>
 
