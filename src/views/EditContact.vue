@@ -18,6 +18,7 @@
         <form @submit.prevent="updateSubmit()">
           <div class="mb-2">
             <input
+              required
               v-model="contact.name"
               type="text"
               class="form-control"
@@ -26,6 +27,7 @@
           </div>
           <div class="mb-2">
             <input
+              required
               v-model="contact.photo"
               type="text"
               class="form-control"
@@ -34,6 +36,7 @@
           </div>
           <div class="mb-2">
             <input
+              required
               v-model="contact.email"
               type="email"
               class="form-control"
@@ -42,6 +45,7 @@
           </div>
           <div class="mb-2">
             <input
+              required
               v-model="contact.mobile"
               type="number"
               class="form-control"
@@ -50,6 +54,7 @@
           </div>
           <div class="mb-2">
             <input
+              required
               v-model="contact.company"
               type="text"
               class="form-control"
@@ -58,6 +63,7 @@
           </div>
           <div class="mb-2">
             <input
+              required
               v-model="contact.title"
               type="text"
               class="form-control"
@@ -66,6 +72,7 @@
           </div>
           <div class="mb-2">
             <select
+              required
               v-model="contact.groupId"
               class="form-control"
               v-if="groups.length > 0"
@@ -82,7 +89,7 @@
         </form>
       </div>
       <div class="col-md-4">
-        <img :src="contact.photo" alt="" class="contact-img"/>
+        <img :src="contact.photo" alt="" class="contact-img" />
       </div>
     </div>
   </div>
@@ -125,7 +132,10 @@ export default {
   methods: {
     updateSubmit: async function () {
       try {
-        let response = await ContactService.updateContact(this.contact,this.contactId);
+        let response = await ContactService.updateContact(
+          this.contact,
+          this.contactId
+        );
         if (response) {
           return this.$router.push("/");
         } else {
@@ -134,11 +144,9 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
