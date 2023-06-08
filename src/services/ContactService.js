@@ -20,7 +20,7 @@ export class ContactService {
 
     static updateContact(contact, contactId) {
         let dataURL = `${this.serverURL}/contacts/${contactId}`;
-        return axios.post(dataURL, contact);
+        return axios.put(dataURL, contact);
     }
 
     static deleteContact(contactId) {

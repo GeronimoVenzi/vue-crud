@@ -79,9 +79,9 @@ export default {
         try {
           let response = ContactService.createContact(this.contact);
           if (response) {
-            return this.$route.push('/');
+            return this.$router.push('/');
           } else {
-            return this.$route.push('/contacts/add');
+            return this.$router.push('/contacts/add');
           }
         } catch (error) {
           console.log(error);
